@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://de6r0u0ts5icg"]
 
-[ext_resource type="PackedScene" uid="uid://fdaqc1nnjjjc" path="res://core/player.tscn" id="1_d3un6"]
+[ext_resource type="PackedScene" uid="uid://fdaqc1nnjjjc" path="res://entities/player.tscn" id="1_d3un6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ey2n3"]
 
@@ -28,4 +28,4 @@ position = Vector2(160, 180)
 shape = SubResource("WorldBoundaryShape2D_ey2n3")
 
 [node name="Player" parent="." instance=ExtResource("1_d3un6")]
-position = Vector2(160, 89)
+position = Vector2(160, 93)
