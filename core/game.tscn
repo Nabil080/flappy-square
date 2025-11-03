@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://de6r0u0ts5icg"]
+[gd_scene load_steps=7 format=3 uid="uid://de6r0u0ts5icg"]
 
 [ext_resource type="Script" uid="uid://bqq3unspphv04" path="res://core/game.gd" id="1_a04qp"]
 [ext_resource type="PackedScene" uid="uid://fdaqc1nnjjjc" path="res://entities/player.tscn" id="1_d3un6"]
 [ext_resource type="Script" uid="uid://b65on5c3f8f6l" path="res://core/pipe_manager.gd" id="2_5sg27"]
+[ext_resource type="FontFile" uid="uid://cg24g0btouosh" path="res://assets/ari-w9500-condensed.ttf" id="2_a04qp"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ey2n3"]
 
@@ -19,6 +20,7 @@ offset_right = 320.0
 offset_bottom = 180.0
 
 [node name="Background" type="ColorRect" parent="UI"]
+z_index = -5
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,10 +29,28 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.015719434, 0.14369178, 0.14420378, 1)
 
-[node name="Floor" type="StaticBody2D" parent="."]
+[node name="Score" type="Label" parent="UI"]
+z_index = 1
+layout_mode = 1
+offset_left = 4.0
+offset_right = 11.0
+offset_bottom = 21.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_a04qp")
+text = "0"
+
+[node name="Floor" type="StaticBody2D" parent="." groups=["enemy"]]
 position = Vector2(160, 180)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape2D_ey2n3")
+
+[node name="Ceiling" type="StaticBody2D" parent="." groups=["enemy"]]
+position = Vector2(160, 0)
+rotation = 3.1415927
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
 shape = SubResource("WorldBoundaryShape2D_ey2n3")
 
 [node name="Player" parent="." instance=ExtResource("1_d3un6")]
