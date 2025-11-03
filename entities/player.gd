@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var gravity := 800.0
-@export var flap_strength := 300.0
+@export var flap_strength := 225.0
 
 func _physics_process(delta):
 	# Apply gravity
