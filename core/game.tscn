@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://de6r0u0ts5icg"]
+[gd_scene load_steps=9 format=3 uid="uid://de6r0u0ts5icg"]
 
 [ext_resource type="Script" uid="uid://bqq3unspphv04" path="res://core/game.gd" id="1_a04qp"]
 [ext_resource type="PackedScene" uid="uid://fdaqc1nnjjjc" path="res://entities/player.tscn" id="1_d3un6"]
 [ext_resource type="Script" uid="uid://b65on5c3f8f6l" path="res://core/pipe_manager.gd" id="2_5sg27"]
 [ext_resource type="FontFile" uid="uid://cg24g0btouosh" path="res://assets/ari-w9500-condensed.ttf" id="2_a04qp"]
 [ext_resource type="PackedScene" uid="uid://dr7jkik87k7qj" path="res://UI/game_over_menu.tscn" id="3_sjcnv"]
+[ext_resource type="AudioStream" uid="uid://17hthmxx7u81" path="res://assets/game-over-arcade-6435.mp3" id="6_cjuek"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ey2n3"]
 
@@ -74,6 +75,10 @@ script = ExtResource("2_5sg27")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PipeManager/DestroyArea"]
 position = Vector2(-364, -3)
 shape = SubResource("RectangleShape2D_5sg27")
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("6_cjuek")
 
 [connection signal="is_dead" from="Player" to="." method="_on_player_is_dead"]
 [connection signal="player_entered" from="PipeManager" to="." method="_on_pipe_manager_player_entered"]

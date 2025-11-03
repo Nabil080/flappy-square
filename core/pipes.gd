@@ -2,6 +2,7 @@ class_name Pipes
 extends Node2D
 
 signal player_entered
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 const SPEED := 100.0
 
 func _physics_process(delta: float) -> void:
@@ -10,4 +11,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_player_entered(body: Node2D) -> void:
 	if body is Player:
+		#audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+		audio_stream_player.play()
 		player_entered.emit() 

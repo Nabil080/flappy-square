@@ -2,6 +2,7 @@ extends Node2D
 
 const SAVE_PATH := "user://savegame.json"
 
+@onready var game_over_sound: AudioStreamPlayer = $GameOverSound
 @onready var game_over_menu: Control = $UI/GameOverMenu
 @onready var score_label: Label = $UI/Score
 var score := 0
@@ -14,6 +15,7 @@ func _ready() -> void:
 
 
 func _on_player_is_dead() -> void:
+	game_over_sound.play()
 	get_tree().paused = true
 	await get_tree().create_timer(1.0).timeout
 	game_over_menu.show()

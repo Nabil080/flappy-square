@@ -22,4 +22,5 @@ mesh = SubResource("QuadMesh_u2d7q")
 shape = SubResource("RectangleShape2D_3x74s")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("2_b0kkn")
