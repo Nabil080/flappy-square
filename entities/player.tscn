@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://fdaqc1nnjjjc"]
+[gd_scene load_steps=5 format=3 uid="uid://fdaqc1nnjjjc"]
 
 [ext_resource type="Script" uid="uid://cahnj3x0x7oj2" path="res://entities/player.gd" id="1_3x74s"]
+[ext_resource type="AudioStream" uid="uid://dtwm2p7lpt8km" path="res://assets/wing-flap-1-6434.mp3" id="2_b0kkn"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_u2d7q"]
 size = Vector2(16, 16)
@@ -19,3 +20,6 @@ mesh = SubResource("QuadMesh_u2d7q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3x74s")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_b0kkn")

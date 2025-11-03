@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 signal is_dead
 
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
 @export var GRAVITY := 800.0
 @export var FLAP_STRENGTH := 225.0
 
@@ -13,6 +15,8 @@ func _physics_process(delta):
 	# Flap
 	if Input.is_action_just_pressed("flap"):
 		velocity.y = -FLAP_STRENGTH
+		audio_stream_player.pitch_scale = randf_range(0.8, 1.2)
+		audio_stream_player.play()
 
 	# Move and collide
 	var collision := move_and_collide(velocity * delta)

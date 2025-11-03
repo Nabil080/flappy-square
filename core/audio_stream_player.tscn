@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmfs6diqsuvjl"]
+
+[ext_resource type="AudioStream" uid="uid://dgnu41onv7bv0" path="res://assets/bird-chipping-426107.mp3" id="1_on4mm"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_on4mm")
+autoplay = true
