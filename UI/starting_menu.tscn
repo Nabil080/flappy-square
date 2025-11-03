@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c25lclunrfres" path="res://UI/starting_menu.gd" id="1_wbhx8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jobbv"]
-bg_color = Color(0, 0, 0, 0.78431374)
+bg_color = Color(0, 0, 0, 0.6156863)
 
 [node name="StartingMenu" type="Control"]
 process_mode = 2

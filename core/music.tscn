@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmfs6diqsuvjl"]
+[gd_scene load_steps=3 format=3 uid="uid://cmfs6diqsuvjl"]
 
 [ext_resource type="AudioStream" uid="uid://dgnu41onv7bv0" path="res://assets/bird-chipping-426107.mp3" id="1_w6wps"]
+[ext_resource type="Script" uid="uid://c3im3qs0dmjwt" path="res://core/music.gd" id="2_76i33"]
 
 [node name="Music" type="AudioStreamPlayer"]
 process_mode = 3
 stream = ExtResource("1_w6wps")
+autoplay = true
+bus = &"Music"
+script = ExtResource("2_76i33")

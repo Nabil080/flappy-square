@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://de6r0u0ts5icg"]
+[gd_scene load_steps=11 format=3 uid="uid://de6r0u0ts5icg"]
 
 [ext_resource type="Script" uid="uid://bqq3unspphv04" path="res://core/game.gd" id="1_a04qp"]
 [ext_resource type="PackedScene" uid="uid://fdaqc1nnjjjc" path="res://entities/player.tscn" id="1_d3un6"]
 [ext_resource type="Script" uid="uid://b65on5c3f8f6l" path="res://core/pipe_manager.gd" id="2_5sg27"]
 [ext_resource type="FontFile" uid="uid://cg24g0btouosh" path="res://assets/ari-w9500-condensed.ttf" id="2_a04qp"]
 [ext_resource type="PackedScene" uid="uid://dr7jkik87k7qj" path="res://UI/game_over_menu.tscn" id="3_sjcnv"]
+[ext_resource type="PackedScene" uid="uid://c4ggvkfbuurq2" path="res://UI/sound_buttons.tscn" id="5_gjr3k"]
 [ext_resource type="AudioStream" uid="uid://17hthmxx7u81" path="res://assets/game-over-arcade-6435.mp3" id="6_cjuek"]
 [ext_resource type="PackedScene" uid="uid://cf8regt20yulc" path="res://UI/starting_menu.tscn" id="7_vhpdd"]
 
@@ -58,6 +59,10 @@ layout_mode = 1
 [node name="StartingMenu" parent="UI" instance=ExtResource("7_vhpdd")]
 layout_mode = 1
 
+[node name="SoundButtons" parent="UI" instance=ExtResource("5_gjr3k")]
+z_index = 10
+layout_mode = 1
+
 [node name="Floor" type="StaticBody2D" parent="." groups=["enemy"]]
 position = Vector2(160, 180)
 
@@ -88,6 +93,7 @@ shape = SubResource("RectangleShape2D_5sg27")
 [node name="GameOverSound" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("6_cjuek")
+bus = &"sfx"
 
 [connection signal="game_restarted" from="UI/GameOverMenu" to="." method="_on_game_over_menu_game_restarted"]
 [connection signal="is_dead" from="Player" to="." method="_on_player_is_dead"]

@@ -35,7 +35,10 @@ func _physics_process(delta):
 		velocity.y += GRAVITY * delta
 
 	# Flap
-	if Input.is_action_just_pressed("flap") and is_playing:
+	if (is_playing and
+		(Input.is_action_just_pressed("flap") or
+		Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not _is_over_ui())
+		):
 		velocity.y = -FLAP_STRENGTH
 		audio_stream_player.pitch_scale = randf_range(0.8, 1.2)
 		audio_stream_player.play()
@@ -53,7 +56,7 @@ func _physics_process(delta):
 	rotation = lerp(rotation, target_rotation, 0.1)
 
 func _manage_collision(collision: KinematicCollision2D):
-	if collision.get_collider().is_in_group("enemy"):
+	if is_playing and collision.get_collider().is_in_group("enemy"):
 		print("Player died")
 		mesh_instance_2d.modulate = Color.RED
 		collision_shape_2d.disabled = true
@@ -66,3 +69,9 @@ func _manage_collision(collision: KinematicCollision2D):
 
 func start():
 	is_playing = true
+
+
+func _is_over_ui() -> bool:
+	var hovered = get_viewport().gui_get_hovered_control()
+	print(hovered)
+	return hovered != null and hovered.name != "Background"

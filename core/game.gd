@@ -11,7 +11,6 @@ const SAVE_PATH := "user://savegame.json"
 var score := 0
 var best_score := 0
 
-
 func _ready() -> void:
 	_load_data()
 

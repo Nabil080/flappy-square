@@ -15,7 +15,7 @@ func _ready() -> void:
 	_spawn_loop()
 	
 func reset():
-	for pipes in get_tree().get_nodes_in_group("pipes"): pipes.free()
+	for pipes in get_tree().get_nodes_in_group("pipes"): pipes.queue_free()
 
 func _spawn_loop() -> void:
 	while true:

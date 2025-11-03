@@ -33,6 +33,7 @@ shape = SubResource("RectangleShape2D_3x74s")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("2_b0kkn")
+bus = &"sfx"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(1.540184e-06, 0.7709061, 0.774441, 1)
