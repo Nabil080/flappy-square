@@ -8,12 +8,14 @@ signal is_dead
 @export var GRAVITY := 800.0
 @export var FLAP_STRENGTH := 225.0
 
+var can_jump := true
+
 func _physics_process(delta):
 	# Apply GRAVITY
 	velocity.y += GRAVITY * delta
 
 	# Flap
-	if Input.is_action_just_pressed("flap"):
+	if Input.is_action_just_pressed("flap") and can_jump:
 		velocity.y = -FLAP_STRENGTH
 		audio_stream_player.pitch_scale = randf_range(0.8, 1.2)
 		audio_stream_player.play()
@@ -35,4 +37,5 @@ func _manage_collision(collision: KinematicCollision2D):
 		$MeshInstance2D.modulate = Color.DARK_RED
 		$CollisionShape2D.disabled = true
 		velocity.y = -FLAP_STRENGTH
+		can_jump = false
 		is_dead.emit()
