@@ -1,15 +1,17 @@
 extends CharacterBody2D
 
-@export var gravity := 800.0
-@export var flap_strength := 225.0
+signal is_dead
+
+@export var GRAVITY := 800.0
+@export var FLAP_STRENGTH := 225.0
 
 func _physics_process(delta):
-	# Apply gravity
-	velocity.y += gravity * delta
+	# Apply GRAVITY
+	velocity.y += GRAVITY * delta
 
 	# Flap
 	if Input.is_action_just_pressed("flap"):
-		velocity.y = -flap_strength
+		velocity.y = -FLAP_STRENGTH
 
 	# Move and collide
 	var collision := move_and_collide(velocity * delta)
@@ -25,5 +27,7 @@ func _physics_process(delta):
 
 func _manage_collision(collision: KinematicCollision2D):
 	if collision.get_collider().is_in_group("enemy"):
-		print("DEAD")
-		$CollisionShape2D.queue_free()
+		$MeshInstance2D.modulate = Color.DARK_RED
+		$CollisionShape2D.disabled = true
+		velocity.y = -FLAP_STRENGTH
+		is_dead.emit()

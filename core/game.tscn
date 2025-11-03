@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://de6r0u0ts5icg"]
+[gd_scene load_steps=7 format=3 uid="uid://de6r0u0ts5icg"]
 
+[ext_resource type="Script" uid="uid://bqq3unspphv04" path="res://core/game.gd" id="1_a04qp"]
 [ext_resource type="PackedScene" uid="uid://fdaqc1nnjjjc" path="res://entities/player.tscn" id="1_d3un6"]
 [ext_resource type="Script" uid="uid://b65on5c3f8f6l" path="res://core/pipe_manager.gd" id="2_5sg27"]
 [ext_resource type="PackedScene" uid="uid://bmkwntdta7k0t" path="res://core/pipes.tscn" id="3_8xnxh"]
@@ -10,6 +11,7 @@
 size = Vector2(20, 179)
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_a04qp")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -56,4 +58,5 @@ position = Vector2(500, 107)
 [node name="Pipes3" parent="Pipes" instance=ExtResource("3_8xnxh")]
 position = Vector2(654, 57)
 
+[connection signal="is_dead" from="Player" to="." method="_on_player_is_dead"]
 [connection signal="area_entered" from="PipeManager/DestroyArea" to="PipeManager" method="_on_destroy_area_area_entered"]
