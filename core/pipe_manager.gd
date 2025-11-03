@@ -3,7 +3,7 @@ extends Node2D
 signal player_entered
 
 const PIPES = preload("uid://bmkwntdta7k0t")
-const MAX_DIST := 32.0
+const MAX_DIST := 50.0           # Tunnel distance from the center
 const MAX_PIPES := 5             # Pool size
 const SPAWN_INTERVAL := 1.5      # seconds between spawns
 
@@ -26,6 +26,7 @@ func _spawn_pipe_from_pool() -> void:
 	if not pipes:
 		pipes = _new_pipes()
 	pipes.global_position = global_position
+	randomize()
 	pipes.move_local_y(randf_range(-MAX_DIST, MAX_DIST))
 
 func _new_pipes() -> Pipes:

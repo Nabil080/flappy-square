@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dr7jkik87k7qj"]
+[gd_scene load_steps=3 format=3 uid="uid://dr7jkik87k7qj"]
 
 [ext_resource type="Script" uid="uid://15kqw1b7xvxe" path="res://UI/game_over_menu.gd" id="1_jobbv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jobbv"]
+bg_color = Color(0, 0, 0, 0.78431374)
 
 [node name="GameOverMenu" type="Control"]
 layout_mode = 3
@@ -12,10 +15,10 @@ grow_vertical = 2
 script = ExtResource("1_jobbv")
 
 [node name="Panel" type="Panel" parent="."]
-self_modulate = Color(0, 0, 0, 0.93333334)
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 180.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jobbv")
 
 [node name="Button" type="Button" parent="Panel"]
 layout_mode = 1

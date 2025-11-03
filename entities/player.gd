@@ -36,6 +36,7 @@ func _manage_collision(collision: KinematicCollision2D):
 	if collision.get_collider().is_in_group("enemy"):
 		$MeshInstance2D.modulate = Color.DARK_RED
 		$CollisionShape2D.disabled = true
+		$PointLight2D.enabled = false
 		velocity.y = -FLAP_STRENGTH
 		can_jump = false
 		is_dead.emit()

@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://1eo7ggcmhhpk"]
+[gd_scene load_steps=4 format=3 uid="uid://1eo7ggcmhhpk"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_oaeqi"]
 size = Vector2(32, 180)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oaeqi"]
 size = Vector2(32, 180)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_oaeqi"]
+polygon = PackedVector2Array(-16, -90, 16, -90, 16, 90, -16, 90)
 
 [node name="Pipe" type="StaticBody2D" groups=["enemy"]]
 
@@ -13,3 +16,6 @@ mesh = SubResource("QuadMesh_oaeqi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_oaeqi")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_oaeqi")
