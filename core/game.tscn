@@ -24,23 +24,8 @@ anchors_preset = 0
 offset_right = 320.0
 offset_bottom = 180.0
 
-[node name="Background" type="ColorRect" parent="UI"]
-visible = false
-z_index = -10
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -657.7778
-offset_top = -370.0
-offset_right = 657.7778
-offset_bottom = 370.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.015686275, 0.14509805, 0.14509805, 1)
-
 [node name="Score" type="Label" parent="UI"]
-z_index = 1
+z_index = 10
 layout_mode = 1
 offset_left = 4.0
 offset_right = 11.0
@@ -58,15 +43,15 @@ visible = false
 z_index = 2
 layout_mode = 1
 
-[node name="StartingMenu" parent="UI" instance=ExtResource("7_vhpdd")]
-visible = false
-layout_mode = 1
-
 [node name="SoundButtons" parent="UI" instance=ExtResource("5_gjr3k")]
 z_index = 10
 layout_mode = 1
 
 [node name="ParallaxBackground" parent="UI" instance=ExtResource("6_4cdhi")]
+
+[node name="StartingMenu" parent="UI" instance=ExtResource("7_vhpdd")]
+z_index = 5
+layout_mode = 1
 
 [node name="Floor" type="StaticBody2D" parent="." groups=["enemy"]]
 position = Vector2(160, 180)
@@ -82,7 +67,7 @@ rotation = 3.1415927
 shape = SubResource("WorldBoundaryShape2D_ey2n3")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_d3un6")]
-position = Vector2(160, 25.000008)
+position = Vector2(160, 89)
 
 [node name="PipeManager" type="Node2D" parent="."]
 position = Vector2(336, 92)

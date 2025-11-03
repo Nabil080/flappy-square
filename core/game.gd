@@ -13,6 +13,7 @@ var best_score := 0
 
 func _ready() -> void:
 	_load_data()
+	_reset_game()
 
 func _reset_game():
 	Music.play()
@@ -75,4 +76,4 @@ func _on_game_over_menu_game_restarted() -> void:
 	_reset_game()
 	game_over_menu.hide()
 	get_tree().paused = false
-	player.is_playing = true
+	

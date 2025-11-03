@@ -11,6 +11,7 @@ signal is_dead
 @export var GRAVITY := 800.0
 @export var FLAP_STRENGTH := 225.0
 
+var can_play : bool = false
 var is_playing : bool
 var should_fall : bool
 
@@ -22,23 +23,26 @@ func _ready() -> void:
 	
 func reset():
 	global_position = STARTING_POSITION
+	can_play = true
 	is_playing = false
 	should_fall = false
 	velocity = Vector2.ZERO
+	rotation = 0.0
 	mesh_instance_2d.modulate = Color.WHITE
 	collision_shape_2d.disabled = false
 	point_light_2d.enabled = true
 
 func _physics_process(delta):
-	# Apply GRAVITY
+	# Apply GRAVITY 
 	if is_playing or should_fall:
 		velocity.y += GRAVITY * delta
 
 	# Flap
-	if (is_playing and
+	if (can_play and
 		(Input.is_action_just_pressed("flap") or
 		Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not _is_over_ui())
 		):
+		is_playing = true
 		velocity.y = -FLAP_STRENGTH
 		audio_stream_player.pitch_scale = randf_range(0.8, 1.2)
 		audio_stream_player.play()
@@ -65,10 +69,6 @@ func _manage_collision(collision: KinematicCollision2D):
 		should_fall = true
 		velocity.y = -FLAP_STRENGTH
 		is_dead.emit()
-
-
-func start():
-	is_playing = true
 
 
 func _is_over_ui() -> bool:

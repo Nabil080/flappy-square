@@ -2,6 +2,7 @@ extends Node2D
 
 signal player_entered
 
+@onready var player: Player = $"../Player"
 const PIPES = preload("uid://bmkwntdta7k0t")
 const MAX_DIST := 50.0
 const MAX_PIPES := 5
@@ -27,7 +28,7 @@ func reset():
 
 func _spawn_loop() -> void:
 	while true:
-		if not get_tree().paused:
+		if not get_tree().paused and player.is_playing:
 			_spawn_pipe_from_pool()
 		await get_tree().create_timer(SPAWN_INTERVAL).timeout
 
