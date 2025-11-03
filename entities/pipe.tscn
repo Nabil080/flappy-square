@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://1eo7ggcmhhpk"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_oaeqi"]
+size = Vector2(32, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oaeqi"]
+size = Vector2(32, 180)
+
+[node name="Pipe" type="StaticBody2D" groups=["enemy"]]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("QuadMesh_oaeqi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oaeqi")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://de6r0u0ts5icg"]
+[gd_scene load_steps=4 format=3 uid="uid://de6r0u0ts5icg"]
 
 [ext_resource type="PackedScene" uid="uid://fdaqc1nnjjjc" path="res://entities/player.tscn" id="1_d3un6"]
+[ext_resource type="PackedScene" uid="uid://bmkwntdta7k0t" path="res://core/pipes.tscn" id="2_5sg27"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ey2n3"]
 
@@ -29,3 +30,6 @@ shape = SubResource("WorldBoundaryShape2D_ey2n3")
 
 [node name="Player" parent="." instance=ExtResource("1_d3un6")]
 position = Vector2(160, 93)
+
+[node name="Pipes" parent="." instance=ExtResource("2_5sg27")]
+position = Vector2(350, 93)
