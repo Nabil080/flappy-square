@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf8regt20yulc"]
+[gd_scene load_steps=7 format=3 uid="uid://cf8regt20yulc"]
 
 [ext_resource type="Script" uid="uid://c25lclunrfres" path="res://UI/starting_menu.gd" id="1_wbhx8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jobbv"]
 bg_color = Color(0, 0, 0, 0.6156863)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbhx8"]
+bg_color = Color(0.015686275, 0.14509805, 0.14509805, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_earh1"]
+bg_color = Color(0.049894698, 0.2689798, 0.2689787, 1)
 
 [sub_resource type="InputEventKey" id="InputEventKey_wbhx8"]
 device = -1
@@ -32,17 +38,20 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jobbv")
 [node name="Button" type="Button" parent="Panel"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 offset_left = -51.0
-offset_top = -14.5
+offset_top = -62.0
 offset_right = 51.0
-offset_bottom = 14.5
+offset_bottom = -33.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_wbhx8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_earh1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_earh1")
 shortcut = SubResource("Shortcut_earh1")
 text = "Play"
 
