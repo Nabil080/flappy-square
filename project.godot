@@ -28,6 +28,11 @@ window/stretch/mode="canvas_items"
 [global_group]
 
 enemy=""
+pipes=""
+
+[gui]
+
+theme/custom_font="uid://cg24g0btouosh"
 
 [input]
 

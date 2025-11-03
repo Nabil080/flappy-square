@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://de6r0u0ts5icg"]
+[gd_scene load_steps=8 format=3 uid="uid://de6r0u0ts5icg"]
 
 [ext_resource type="Script" uid="uid://bqq3unspphv04" path="res://core/game.gd" id="1_a04qp"]
 [ext_resource type="PackedScene" uid="uid://fdaqc1nnjjjc" path="res://entities/player.tscn" id="1_d3un6"]
 [ext_resource type="Script" uid="uid://b65on5c3f8f6l" path="res://core/pipe_manager.gd" id="2_5sg27"]
 [ext_resource type="FontFile" uid="uid://cg24g0btouosh" path="res://assets/ari-w9500-condensed.ttf" id="2_a04qp"]
+[ext_resource type="PackedScene" uid="uid://dr7jkik87k7qj" path="res://UI/game_over_menu.tscn" id="3_sjcnv"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ey2n3"]
 
@@ -40,6 +41,12 @@ theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("2_a04qp")
 text = "0"
 
+[node name="GameOverMenu" parent="UI" instance=ExtResource("3_sjcnv")]
+process_mode = 2
+visible = false
+z_index = 2
+layout_mode = 1
+
 [node name="Floor" type="StaticBody2D" parent="." groups=["enemy"]]
 position = Vector2(160, 180)
 
@@ -54,7 +61,7 @@ rotation = 3.1415927
 shape = SubResource("WorldBoundaryShape2D_ey2n3")
 
 [node name="Player" parent="." instance=ExtResource("1_d3un6")]
-position = Vector2(160, 93)
+position = Vector2(160, 54)
 
 [node name="PipeManager" type="Node2D" parent="."]
 position = Vector2(338, 93)

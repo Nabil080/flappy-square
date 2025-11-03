@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6dth2"]
 size = Vector2(20, 64)
 
-[node name="Pipes" type="Node2D"]
+[node name="Pipes" type="Node2D" groups=["pipes"]]
 script = ExtResource("1_6dth2")
 
 [node name="TopPipe" parent="." instance=ExtResource("1_n8xn5")]
