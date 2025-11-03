@@ -12,6 +12,7 @@ var best_score := 0
 func _ready() -> void:
 	_load_data()
 	_update_ui()
+	get_tree().paused = true
 
 
 func _on_player_is_dead() -> void:
