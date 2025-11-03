@@ -60,7 +60,6 @@ layout_mode = 1
 layout_mode = 1
 
 [node name="SoundButtons" parent="UI" instance=ExtResource("5_gjr3k")]
-z_index = 10
 layout_mode = 1
 
 [node name="Floor" type="StaticBody2D" parent="." groups=["enemy"]]
