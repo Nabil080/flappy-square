@@ -1,9 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://dr7jkik87k7qj"]
+[gd_scene load_steps=5 format=3 uid="uid://dr7jkik87k7qj"]
 
 [ext_resource type="Script" uid="uid://15kqw1b7xvxe" path="res://UI/game_over_menu.gd" id="1_jobbv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jobbv"]
 bg_color = Color(0, 0, 0, 0.78431374)
+
+[sub_resource type="InputEventKey" id="InputEventKey_jobbv"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_3rckl"]
+events = [SubResource("InputEventKey_jobbv")]
 
 [node name="GameOverMenu" type="Control"]
 layout_mode = 3
@@ -33,6 +41,7 @@ offset_right = 4.0
 offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
+shortcut = SubResource("Shortcut_3rckl")
 text = "Restart"
 
 [node name="Label" type="Label" parent="Panel"]

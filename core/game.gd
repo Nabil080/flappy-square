@@ -15,12 +15,14 @@ func _ready() -> void:
 	_load_data()
 
 func _reset_game():
+	Music.play()
 	score = 0
 	pipe_manager.reset()
 	player.reset()
 	_update_ui()
 
 func _on_player_is_dead() -> void:
+	Music.stop()
 	game_over_sound.play()
 	get_tree().paused = true
 	await get_tree().create_timer(1.0).timeout

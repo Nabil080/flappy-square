@@ -5,8 +5,6 @@ func _ready() -> void:
 	get_tree().paused = true
 
 func _on_button_pressed() -> void:
-	#Music.play()
 	get_tree().paused = false
 	hide()
 	$"../../Player".is_playing = true
-	Globals.first_launch = false

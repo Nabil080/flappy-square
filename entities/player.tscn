@@ -37,7 +37,8 @@ bus = &"sfx"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(1.540184e-06, 0.7709061, 0.774441, 1)
-energy = 2.0
+range_layer_min = -200
+range_layer_max = 200
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_e4p34")
 texture_scale = 6.0

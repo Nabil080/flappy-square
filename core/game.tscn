@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://de6r0u0ts5icg"]
+[gd_scene load_steps=12 format=3 uid="uid://de6r0u0ts5icg"]
 
 [ext_resource type="Script" uid="uid://bqq3unspphv04" path="res://core/game.gd" id="1_a04qp"]
 [ext_resource type="PackedScene" uid="uid://fdaqc1nnjjjc" path="res://entities/player.tscn" id="1_d3un6"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://cg24g0btouosh" path="res://assets/ari-w9500-condensed.ttf" id="2_a04qp"]
 [ext_resource type="PackedScene" uid="uid://dr7jkik87k7qj" path="res://UI/game_over_menu.tscn" id="3_sjcnv"]
 [ext_resource type="PackedScene" uid="uid://c4ggvkfbuurq2" path="res://UI/sound_buttons.tscn" id="5_gjr3k"]
+[ext_resource type="PackedScene" uid="uid://cwuh7l77b2gtc" path="res://core/parallax.tscn" id="6_4cdhi"]
 [ext_resource type="AudioStream" uid="uid://17hthmxx7u81" path="res://assets/game-over-arcade-6435.mp3" id="6_cjuek"]
 [ext_resource type="PackedScene" uid="uid://cf8regt20yulc" path="res://UI/starting_menu.tscn" id="7_vhpdd"]
 
@@ -24,7 +25,8 @@ offset_right = 320.0
 offset_bottom = 180.0
 
 [node name="Background" type="ColorRect" parent="UI"]
-z_index = -5
+visible = false
+z_index = -10
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,7 +37,7 @@ offset_right = 657.7778
 offset_bottom = 370.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.015719434, 0.14369178, 0.14420378, 1)
+color = Color(0.015686275, 0.14509805, 0.14509805, 1)
 
 [node name="Score" type="Label" parent="UI"]
 z_index = 1
@@ -57,10 +59,14 @@ z_index = 2
 layout_mode = 1
 
 [node name="StartingMenu" parent="UI" instance=ExtResource("7_vhpdd")]
+visible = false
 layout_mode = 1
 
 [node name="SoundButtons" parent="UI" instance=ExtResource("5_gjr3k")]
+z_index = 10
 layout_mode = 1
+
+[node name="ParallaxBackground" parent="UI" instance=ExtResource("6_4cdhi")]
 
 [node name="Floor" type="StaticBody2D" parent="." groups=["enemy"]]
 position = Vector2(160, 180)
@@ -83,10 +89,9 @@ position = Vector2(336, 92)
 script = ExtResource("2_5sg27")
 
 [node name="DestroyArea" type="Area2D" parent="PipeManager"]
-position = Vector2(-334, -2)
+position = Vector2(-379, -3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PipeManager/DestroyArea"]
-position = Vector2(-12, 0)
 shape = SubResource("RectangleShape2D_5sg27")
 
 [node name="GameOverSound" type="AudioStreamPlayer" parent="."]

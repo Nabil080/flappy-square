@@ -1,9 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cf8regt20yulc"]
+[gd_scene load_steps=5 format=3 uid="uid://cf8regt20yulc"]
 
 [ext_resource type="Script" uid="uid://c25lclunrfres" path="res://UI/starting_menu.gd" id="1_wbhx8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jobbv"]
 bg_color = Color(0, 0, 0, 0.6156863)
+
+[sub_resource type="InputEventKey" id="InputEventKey_wbhx8"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_earh1"]
+events = [SubResource("InputEventKey_wbhx8")]
 
 [node name="StartingMenu" type="Control"]
 process_mode = 2
@@ -35,6 +43,7 @@ offset_right = 51.0
 offset_bottom = 14.5
 grow_horizontal = 2
 grow_vertical = 2
+shortcut = SubResource("Shortcut_earh1")
 text = "Play"
 
 [node name="Label" type="Label" parent="Panel"]
