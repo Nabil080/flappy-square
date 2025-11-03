@@ -5,15 +5,21 @@ const SAVE_PATH := "user://savegame.json"
 @onready var game_over_sound: AudioStreamPlayer = $GameOverSound
 @onready var game_over_menu: Control = $UI/GameOverMenu
 @onready var score_label: Label = $UI/Score
+@onready var player: Player = $Player
+@onready var pipe_manager: Node2D = $PipeManager
+
 var score := 0
 var best_score := 0
 
 
 func _ready() -> void:
 	_load_data()
-	_update_ui()
-	get_tree().paused = true
 
+func _reset_game():
+	score = 0
+	pipe_manager.reset()
+	player.reset()
+	_update_ui()
 
 func _on_player_is_dead() -> void:
 	game_over_sound.play()
@@ -62,3 +68,10 @@ func _load_data() -> void:
 		best_score = result["best_score"]
 	else:
 		best_score = 0
+
+
+func _on_game_over_menu_game_restarted() -> void:
+	_reset_game()
+	game_over_menu.hide()
+	get_tree().paused = false
+	player.is_playing = true

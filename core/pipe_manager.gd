@@ -10,10 +10,12 @@ const SPAWN_INTERVAL := 1.5      # seconds between spawns
 @onready var game: Node2D = $".."
 
 var pool: Array[Pipes] = []      # inactive pipe pool
-var active_pipes: Array[Pipes] = [] # pipes currently in play
 
 func _ready() -> void:
 	_spawn_loop()
+	
+func reset():
+	for pipes in get_tree().get_nodes_in_group("pipes"): pipes.free()
 
 func _spawn_loop() -> void:
 	while true:

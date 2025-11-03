@@ -4,12 +4,30 @@ extends CharacterBody2D
 signal is_dead
 
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var mesh_instance_2d: MeshInstance2D = $MeshInstance2D
+@onready var point_light_2d: PointLight2D = $PointLight2D
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 @export var GRAVITY := 800.0
 @export var FLAP_STRENGTH := 225.0
 
-var is_playing := false
-var should_fall := false
+var is_playing : bool
+var should_fall : bool
+
+var STARTING_POSITION : Vector2
+
+func _ready() -> void:
+	STARTING_POSITION = global_position
+	reset()
+	
+func reset():
+	global_position = STARTING_POSITION
+	is_playing = false
+	should_fall = false
+	velocity = Vector2.ZERO
+	mesh_instance_2d.modulate = Color.WHITE
+	collision_shape_2d.disabled = false
+	point_light_2d.enabled = true
 
 func _physics_process(delta):
 	# Apply GRAVITY
@@ -36,12 +54,13 @@ func _physics_process(delta):
 
 func _manage_collision(collision: KinematicCollision2D):
 	if collision.get_collider().is_in_group("enemy"):
-		$MeshInstance2D.modulate = Color.DARK_RED
-		$CollisionShape2D.disabled = true
-		$PointLight2D.enabled = false
-		velocity.y = -FLAP_STRENGTH
+		print("Player died")
+		mesh_instance_2d.modulate = Color.RED
+		collision_shape_2d.disabled = true
+		point_light_2d.enabled = false
 		is_playing = false
 		should_fall = true
+		velocity.y = -FLAP_STRENGTH
 		is_dead.emit()
 
 
