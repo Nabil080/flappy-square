@@ -4,33 +4,44 @@ signal player_entered
 
 @onready var player: Player = $"../Player"
 const PIPES = preload("uid://bmkwntdta7k0t")
-const MAX_DIST := 50.0
+
+# Timing and movement parameters
+const MIN_INTERVAL := 0.5
+const MAX_INTERVAL := 2.0
+const MAX_Y_DIST := 64.0
 const MAX_PIPES := 5
-const SPAWN_INTERVAL := 1.5
+
+# Vertical bounds (prevents pipes from being off-screen)
+const MIN_Y := 0.0 + 64.0
+const MAX_Y := 180.0 - 64.0
 
 @onready var game: Node2D = $".."
 
 var pool: Array[Pipes] = []
 var active_pipes: Array[Pipes] = []
+var last_pipe_y := (MIN_Y + MAX_Y) / 2.0 # Start around mid-screen
 
 
 func _ready() -> void:
 	_spawn_loop()
 
 
-func reset():
-	# Hide and disable physics on all active pipes
+func reset() -> void:
 	for pipes in active_pipes:
 		_deactivate_pipe(pipes)
 		pool.append(pipes)
 	active_pipes.clear()
+	last_pipe_y = (MIN_Y + MAX_Y) / 2.0
 
 
 func _spawn_loop() -> void:
 	while true:
 		if not get_tree().paused and player.is_playing:
 			_spawn_pipe_from_pool()
-		await get_tree().create_timer(SPAWN_INTERVAL).timeout
+		
+		# Random spawn interval
+		var interval = randf_range(MIN_INTERVAL, MAX_INTERVAL)
+		await get_tree().create_timer(interval).timeout
 
 
 func _spawn_pipe_from_pool() -> void:
@@ -40,10 +51,22 @@ func _spawn_pipe_from_pool() -> void:
 	else:
 		pipes = pool.pop_back()
 
-	# Reactivate
 	_activate_pipe(pipes)
-	pipes.global_position = global_position
-	pipes.move_local_y(randf_range(-MAX_DIST, MAX_DIST))
+
+	# Pick a random interval (used to scale max vertical distance)
+	var interval = randf_range(MIN_INTERVAL, MAX_INTERVAL)
+	var t = (interval - MIN_INTERVAL) / (MAX_INTERVAL - MIN_INTERVAL) # normalized 0..1
+	var max_dist = t * MAX_Y_DIST
+
+	# Calculate new Y, relative to the previous one
+	var new_y = last_pipe_y + randf_range(-max_dist, max_dist)
+
+	# Clamp to screen-safe range
+	new_y = clamp(new_y, MIN_Y, MAX_Y)
+	last_pipe_y = new_y
+
+	# Set position
+	pipes.global_position = Vector2(global_position.x, new_y)
 	active_pipes.append(pipes)
 
 

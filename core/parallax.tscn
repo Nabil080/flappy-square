@@ -43,7 +43,7 @@ scale = Vector2(295.92816, 175.3648)
 mesh = SubResource("PrismMesh_4c55m")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
-modulate = Color(0.0006940364, 0.024093369, 0.020498523, 1)
+modulate = Color(0.016216699, 0.14789337, 0.14789343, 1)
 z_index = -7
 motion_scale = Vector2(0.5, 0.5)
 motion_mirroring = Vector2(640, 0)
@@ -98,7 +98,7 @@ scale = Vector2(295.92816, 175.3648)
 mesh = SubResource("PrismMesh_4c55m")
 
 [node name="ParallaxLayer6" type="ParallaxLayer" parent="."]
-modulate = Color(0.0006940364, 0.024093369, 0.020498523, 1)
+modulate = Color(0.016216699, 0.14789337, 0.14789343, 1)
 z_index = -7
 position = Vector2(-320, 0)
 motion_scale = Vector2(0.5, 0.5)
