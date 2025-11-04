@@ -12,6 +12,7 @@ signal is_dead
 @export var FLAP_STRENGTH := 225.0
 
 var can_play : bool = false
+var alive : bool = true
 var is_playing : bool
 var should_fall : bool
 
@@ -24,10 +25,11 @@ func _ready() -> void:
 func reset():
 	global_position = STARTING_POSITION
 	can_play = true
+	alive = true
 	is_playing = false
 	should_fall = false
 	velocity = Vector2.ZERO
-	rotation = 0.0
+	mesh_instance_2d.rotation = 0.0
 	mesh_instance_2d.modulate = Color.WHITE
 	collision_shape_2d.disabled = false
 	point_light_2d.enabled = true
@@ -38,7 +40,7 @@ func _physics_process(delta):
 		velocity.y += GRAVITY * delta
 
 	# Flap
-	if (can_play and
+	if (can_play and alive and
 		(Input.is_action_just_pressed("flap") or
 		Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not _is_over_ui())
 		):
@@ -57,7 +59,7 @@ func _physics_process(delta):
 	var vertical_speed := velocity.y
 	var tilt_in_degrees := clampf(vertical_speed / 4.0, -30.0, 90.0)
 	var target_rotation  := deg_to_rad(tilt_in_degrees)
-	rotation = lerp(rotation, target_rotation, 0.1)
+	mesh_instance_2d.rotation = lerp(mesh_instance_2d.rotation, target_rotation, 0.1)
 
 func _manage_collision(collision: KinematicCollision2D):
 	if is_playing and collision.get_collider().is_in_group("enemy"):
@@ -68,6 +70,7 @@ func _manage_collision(collision: KinematicCollision2D):
 		is_playing = false
 		should_fall = true
 		velocity.y = -FLAP_STRENGTH
+		alive = false
 		is_dead.emit()
 
 

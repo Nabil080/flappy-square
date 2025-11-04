@@ -21,6 +21,7 @@ fill_from = Vector2(0.5, 0.5)
 [node name="Player" type="CharacterBody2D"]
 process_mode = 3
 z_index = 1
+position = Vector2(163.99998, 92.99999)
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_3x74s")
 
@@ -29,6 +30,7 @@ mesh = SubResource("QuadMesh_u2d7q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3x74s")
+debug_color = Color(0.71919864, 0.4787063, 0.11781772, 0.41960785)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
