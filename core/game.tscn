@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://de6r0u0ts5icg"]
+[gd_scene load_steps=13 format=3 uid="uid://de6r0u0ts5icg"]
 
 [ext_resource type="Script" uid="uid://bqq3unspphv04" path="res://core/game.gd" id="1_a04qp"]
 [ext_resource type="PackedScene" uid="uid://fdaqc1nnjjjc" path="res://entities/player.tscn" id="1_d3un6"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c4ggvkfbuurq2" path="res://UI/sound_buttons.tscn" id="5_gjr3k"]
 [ext_resource type="PackedScene" uid="uid://cwuh7l77b2gtc" path="res://core/parallax.tscn" id="6_4cdhi"]
 [ext_resource type="AudioStream" uid="uid://17hthmxx7u81" path="res://assets/game-over-arcade-6435.mp3" id="6_cjuek"]
+[ext_resource type="Script" uid="uid://d0klub0rmba7n" path="res://core/label.gd" id="7_fgh25"]
 [ext_resource type="PackedScene" uid="uid://cf8regt20yulc" path="res://UI/starting_menu.tscn" id="7_vhpdd"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ey2n3"]
@@ -53,6 +54,23 @@ layer = -1
 [node name="StartingMenu" parent="UI" instance=ExtResource("7_vhpdd")]
 z_index = 5
 layout_mode = 1
+
+[node name="Label" type="Label" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Space or Tap to Flap"
+script = ExtResource("7_fgh25")
 
 [node name="Floor" type="StaticBody2D" parent="." groups=["enemy"]]
 position = Vector2(160, 180)
