@@ -21,7 +21,6 @@ fill_from = Vector2(0.5, 0.5)
 [node name="Player" type="CharacterBody2D"]
 process_mode = 3
 z_index = 1
-position = Vector2(163.99998, 92.99999)
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_3x74s")
 

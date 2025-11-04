@@ -42,7 +42,7 @@ func _physics_process(delta):
 	# Flap
 	if (can_play and alive and
 		(Input.is_action_just_pressed("flap") or
-		Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not _is_over_ui())
+		Input.is_action_just_pressed("mouse_flap") and not _is_over_ui())
 		):
 		is_playing = true
 		velocity.y = -FLAP_STRENGTH
@@ -77,4 +77,4 @@ func _manage_collision(collision: KinematicCollision2D):
 func _is_over_ui() -> bool:
 	var hovered = get_viewport().gui_get_hovered_control()
 	print(hovered)
-	return hovered != null and hovered.name != "Background"
+	return hovered != null and hovered.name != "UI"

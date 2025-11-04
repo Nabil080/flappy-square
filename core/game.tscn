@@ -48,6 +48,7 @@ z_index = 10
 layout_mode = 1
 
 [node name="ParallaxBackground" parent="UI" instance=ExtResource("6_4cdhi")]
+layer = -1
 
 [node name="StartingMenu" parent="UI" instance=ExtResource("7_vhpdd")]
 z_index = 5
