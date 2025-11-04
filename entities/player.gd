@@ -11,18 +11,20 @@ signal is_dead
 @export var GRAVITY := 800.0
 @export var FLAP_STRENGTH := 225.0
 
-var can_play : bool = false
-var alive : bool = true
-var is_playing : bool
-var should_fall : bool
+var can_play: bool = false
+var alive: bool = true
+var is_playing: bool
+var should_fall: bool
 
-var STARTING_POSITION : Vector2
+var STARTING_POSITION: Vector2
+
 
 func _ready() -> void:
 	STARTING_POSITION = global_position
 	reset()
-	
-func reset():
+
+
+func reset() -> void:
 	global_position = STARTING_POSITION
 	can_play = true
 	alive = true
@@ -34,34 +36,37 @@ func reset():
 	collision_shape_2d.disabled = false
 	point_light_2d.enabled = true
 
-func _physics_process(delta):
-	# Apply GRAVITY 
+
+func _physics_process(delta: float) -> void:
+	# Apply gravity
 	if is_playing or should_fall:
 		velocity.y += GRAVITY * delta
-
-	# Flap
-	if (can_play and alive and
-		(Input.is_action_just_pressed("flap") or
-		Input.is_action_just_pressed("mouse_flap") and not _is_over_ui())
-		):
-		is_playing = true
-		velocity.y = -FLAP_STRENGTH
-		audio_stream_player.pitch_scale = randf_range(0.8, 1.2)
-		audio_stream_player.play()
 
 	# Move and collide
 	var collision := move_and_collide(velocity * delta)
 	if collision:
 		_manage_collision(collision)
-	
 
 	# Rotate smoothly based on vertical speed
 	var vertical_speed := velocity.y
 	var tilt_in_degrees := clampf(vertical_speed / 4.0, -30.0, 90.0)
-	var target_rotation  := deg_to_rad(tilt_in_degrees)
+	var target_rotation := deg_to_rad(tilt_in_degrees)
 	rotation = lerp(rotation, target_rotation, 0.1)
 
-func _manage_collision(collision: KinematicCollision2D):
+
+# Handle input only if the UI didn't already use it (prevents restart+flap issue)
+func _unhandled_input(event: InputEvent) -> void:
+	if not (can_play and alive):
+		return
+	
+	if (event.is_action_pressed("flap") or (event.is_action_pressed("mouse_flap") and not _is_over_ui())) :
+		is_playing = true
+		velocity.y = -FLAP_STRENGTH
+		audio_stream_player.pitch_scale = randf_range(0.8, 1.2)
+		audio_stream_player.play()
+
+
+func _manage_collision(collision: KinematicCollision2D) -> void:
 	if is_playing and collision.get_collider().is_in_group("enemy"):
 		print("Player died")
 		mesh_instance_2d.modulate = Color.RED
@@ -75,6 +80,5 @@ func _manage_collision(collision: KinematicCollision2D):
 
 
 func _is_over_ui() -> bool:
-	var hovered = get_viewport().gui_get_hovered_control()
-	print(hovered)
+	var hovered := get_viewport().gui_get_hovered_control()
 	return hovered != null and hovered.name != "UI"
