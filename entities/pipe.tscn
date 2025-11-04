@@ -12,9 +12,11 @@ polygon = PackedVector2Array(-16, -90, 16, -90, 16, 90, -16, 90)
 [node name="Pipe" type="StaticBody2D" groups=["enemy"]]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+self_modulate = Color(0.6789437, 0.6789437, 0.6789437, 1)
 mesh = SubResource("QuadMesh_oaeqi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_oaeqi")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]

@@ -29,7 +29,7 @@ func reset():
 	is_playing = false
 	should_fall = false
 	velocity = Vector2.ZERO
-	mesh_instance_2d.rotation = 0.0
+	rotation = 0.0
 	mesh_instance_2d.modulate = Color.WHITE
 	collision_shape_2d.disabled = false
 	point_light_2d.enabled = true
@@ -59,7 +59,7 @@ func _physics_process(delta):
 	var vertical_speed := velocity.y
 	var tilt_in_degrees := clampf(vertical_speed / 4.0, -30.0, 90.0)
 	var target_rotation  := deg_to_rad(tilt_in_degrees)
-	mesh_instance_2d.rotation = lerp(mesh_instance_2d.rotation, target_rotation, 0.1)
+	rotation = lerp(rotation, target_rotation, 0.1)
 
 func _manage_collision(collision: KinematicCollision2D):
 	if is_playing and collision.get_collider().is_in_group("enemy"):
