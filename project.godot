@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Flappy Bird"
+config/name="Flappy Square"
 run/main_scene="res://core/game.tscn"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 Music="*res://core/music.tscn"
-Globals="*res://core/globals.gd"
 
 [debug]
 

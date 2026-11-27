@@ -5,21 +5,17 @@ signal player_entered
 @onready var player: Player = $"../Player"
 const PIPES = preload("uid://bmkwntdta7k0t")
 
-# Timing and movement parameters
 const MIN_INTERVAL := 0.5
 const MAX_INTERVAL := 2.0
 const MAX_Y_DIST := 64.0
-const MAX_PIPES := 5
 
-# Vertical bounds (prevents pipes from being off-screen)
+# Keeps the gap away from the floor and ceiling
 const MIN_Y := 0.0 + 64.0
 const MAX_Y := 180.0 - 64.0
 
-@onready var game: Node2D = $".."
-
 var pool: Array[Pipes] = []
 var active_pipes: Array[Pipes] = []
-var last_pipe_y := (MIN_Y + MAX_Y) / 2.0 # Start around mid-screen
+var last_pipe_y := (MIN_Y + MAX_Y) / 2.0
 
 
 func _ready() -> void:
@@ -38,8 +34,7 @@ func _spawn_loop() -> void:
 	while true:
 		if not get_tree().paused and player.is_playing:
 			_spawn_pipe_from_pool()
-		
-		# Random spawn interval
+
 		var interval = randf_range(MIN_INTERVAL, MAX_INTERVAL)
 		await get_tree().create_timer(interval).timeout
 
@@ -53,19 +48,16 @@ func _spawn_pipe_from_pool() -> void:
 
 	_activate_pipe(pipes)
 
-	# Pick a random interval (used to scale max vertical distance)
+	# The bigger the random interval, the further the gap can move from the last one
 	var interval = randf_range(MIN_INTERVAL, MAX_INTERVAL)
-	var t = (interval - MIN_INTERVAL) / (MAX_INTERVAL - MIN_INTERVAL) # normalized 0..1
+	var t = (interval - MIN_INTERVAL) / (MAX_INTERVAL - MIN_INTERVAL)
 	var max_dist = t * MAX_Y_DIST
 
-	# Calculate new Y, relative to the previous one
 	var new_y = last_pipe_y + randf_range(-max_dist, max_dist)
 
-	# Clamp to screen-safe range
 	new_y = clamp(new_y, MIN_Y, MAX_Y)
 	last_pipe_y = new_y
 
-	# Set position
 	pipes.global_position = Vector2(global_position.x, new_y)
 	active_pipes.append(pipes)
 

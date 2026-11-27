@@ -41,7 +41,6 @@ func _update_ui() -> void:
 
 
 func _save_data() -> void:
-	# Only save if it’s a new best score
 	if score < best_score:
 		return
 	best_score = score
@@ -76,4 +75,3 @@ func _on_game_over_menu_game_restarted() -> void:
 	_reset_game()
 	game_over_menu.hide()
 	get_tree().paused = false
-	
