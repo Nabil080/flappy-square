@@ -7,7 +7,7 @@ It's game 1.5 of my [20 Games Challenge](https://20_games_challenge.gitlab.io/),
 classic games to learn how they're built. The first game is Pong or Flappy Bird, so I did both. This one
 took me two days in November 2025.
 
-**Play it in your browser or download it: https://kozumagames.itch.io/flappy-bird**
+**Play it in your browser or download it: https://kozumagames.itch.io/flappy-square**
 
 ![A run through the walls, then a game over](screenshots/gameplay.gif)
 
